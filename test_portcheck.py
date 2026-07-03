@@ -23,3 +23,12 @@ def test_parse_netstat_finds_listeners():
 def test_parse_netstat_skips_established():
     ports = [p for p, _ in portcheck.parse_netstat_windows(NETSTAT)]
     assert 9999 not in ports
+
+
+def test_parse_netstat_sorted_and_unique():
+    rows = portcheck.parse_netstat_windows(NETSTAT + NETSTAT)
+    assert rows == sorted(set(rows))
+
+def test_parse_lsof_finds_listeners():
+    rows = portcheck.parse_lsof(LSOF)
+    assert (3000, 4242, "node") in rows
