@@ -32,3 +32,14 @@ def test_parse_netstat_sorted_and_unique():
 def test_parse_lsof_finds_listeners():
     rows = portcheck.parse_lsof(LSOF)
     assert (3000, 4242, "node") in rows
+
+
+def test_parse_lsof_reads_the_port_from_the_name_column():
+    ports = [p for p, _, _ in portcheck.parse_lsof(LSOF)]
+    assert sorted(ports) == [3000, 5432]
+
+def test_is_free_on_an_unused_port():
+    with socket.socket() as probe:
+        probe.bind(("127.0.0.1", 0))
+        port = probe.getsockname()[1]
+    assert portcheck.is_free(port) is True
