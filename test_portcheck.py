@@ -43,3 +43,13 @@ def test_is_free_on_an_unused_port():
         probe.bind(("127.0.0.1", 0))
         port = probe.getsockname()[1]
     assert portcheck.is_free(port) is True
+
+
+def test_is_free_is_false_while_something_listens():
+    server = socket.socket()
+    server.bind(("127.0.0.1", 0))
+    server.listen(1)
+    try:
+        assert portcheck.is_free(server.getsockname()[1]) is False
+    finally:
+        server.close()
