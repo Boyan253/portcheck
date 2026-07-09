@@ -15,3 +15,15 @@ python portcheck.py              # everything listening
 python portcheck.py 3000         # just this port, plus how to kill it
 python portcheck.py 5432 --free  # exit 0 if free, 1 if in use
 ```
+
+## Output
+
+```
+PORT     PID      PROCESS
+3000     4242     node.exe
+5432     991      postgres.exe
+
+to stop it:  taskkill /PID 4242 /F
+```
+
+The kill command printed is the right one for the platform you are on.
