@@ -27,3 +27,14 @@ to stop it:  taskkill /PID 4242 /F
 ```
 
 The kill command printed is the right one for the platform you are on.
+
+## How it finds them
+
+| platform | uses |
+|----------|------|
+| Windows  | `netstat -ano` + `tasklist` for the process name |
+| macOS / BSD | `lsof -iTCP -sTCP:LISTEN` |
+| Linux    | `lsof` if present, otherwise `ss -ltnp` |
+
+`--free` does not shell out at all — it just tries to connect, which is what
+you want inside a script deciding whether to start a server.
