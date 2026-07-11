@@ -38,3 +38,9 @@ The kill command printed is the right one for the platform you are on.
 
 `--free` does not shell out at all — it just tries to connect, which is what
 you want inside a script deciding whether to start a server.
+
+## In a script
+
+```sh
+python portcheck.py 8000 --free || python portcheck.py 8000
+```
