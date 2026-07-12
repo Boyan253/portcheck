@@ -44,3 +44,10 @@ you want inside a script deciding whether to start a server.
 ```sh
 python portcheck.py 8000 --free || python portcheck.py 8000
 ```
+
+## Tests
+
+```
+pip install pytest
+pytest
+```
