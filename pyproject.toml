@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portcheck"
+version = "0.1.0"
+description = "Show which process is listening on which port, cross-platform, so you can kill the right one."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/Boyan253/portcheck"
+
+[project.scripts]
+portcheck = "portcheck:main"
+
+[tool.setuptools]
+py-modules = ["portcheck"]
