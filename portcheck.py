@@ -8,6 +8,8 @@ import socket
 import subprocess
 import sys
 
+__version__ = "0.1.0"
+
 WINDOWS = os.name == "nt"
 
 
@@ -86,6 +88,8 @@ def is_free(port, host="127.0.0.1"):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--version", action="version",
+                    version="%(prog)s " + __version__)
     ap.add_argument("port", nargs="?", type=int, help="only show this port")
     ap.add_argument("--free", action="store_true",
                     help="just test whether the port is free (exit 0 if it is)")
